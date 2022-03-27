@@ -6,9 +6,10 @@ include './php/helpers.php';
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Title</title>
+    <title>Expense Tracker - Web Technology Mini Project</title>
     <!-- Required meta tags -->
     <meta charset="utf-8" />
+    <meta name="description" content="Expense Tracker - Web Technology Mini Project, created by using html, css, php, mysql, bootstrap, chart.js etc." />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -20,3 +21,8 @@ include './php/helpers.php';
     <link rel="stylesheet" href="css/app.css" />
   </head>
   <body>
+<!-- 
+  SELECT DISTINCT left (created_at, locate(' ', created_at) -1) as date from `sales` group by month(created_at) LIMIT 7
+SELECT DISTINCT left (date, locate(' ', date) -1) as date from `amount` 
+
+   -->

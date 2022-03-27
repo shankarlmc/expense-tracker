@@ -72,20 +72,26 @@ function total_budget_calculater($conn, $type =  NULL){
             $data = $result->fetch_all(MYSQLI_ASSOC);
             return $data[0]['total_amount'];
         }
-
     }else{
-        $sql =  "SELECT SUM(amount) as total_amount FROM amount ";
-        $result = mysqli_query($conn,$sql);
-        if($result->num_rows > 0){
-            $data = $result->fetch_all(MYSQLI_ASSOC);
-            return $data[0]['total_amount'];
-        }
+        $data_income = total_budget_calculater($conn, 'income');
+        $data_expense = total_budget_calculater($conn, 'expense');
+        $remaining_budget = $data_income - $data_expense;
+        return $remaining_budget;
     }
    
 }
 
 // get sum amount of each month
- 
+function get_amount_monthly($conn){
+    $month = date('m');
+    $year = date('Y');
+    $sql = "SELECT SUM(amount) as total_amount FROM amount WHERE MONTH(date) = '$month' AND YEAR(date) = '$year' ";
+    $result = mysqli_query($conn,$sql);
+    if($result->num_rows > 0){
+        $data = $result->fetch_all(MYSQLI_ASSOC);
+        return $data[0]['total_amount'];
+    }
+}
 
 
 
@@ -97,3 +103,4 @@ function total_budget_calculater($conn, $type =  NULL){
 //     date date not null,
 //     description varchar(255) 
 // );
+

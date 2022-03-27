@@ -12,6 +12,7 @@ const chartdisplay = new Chart(document.getElementById("monthlychart"), {
       "August",
       "September",
       "October",
+      "November",
       "December",
     ],
     datasets: [
@@ -32,3 +33,15 @@ const chartdisplay = new Chart(document.getElementById("monthlychart"), {
 
   options: {},
 });
+
+// console.log(chartdisplay.data.datasets[0].data);
+// SELECT DISTINCT month(date) as date from `amount` group by month(date);
+const month = [2, 3, 4];
+var data = [];
+// chartdisplay.data.labels.forEach((element, index) => {
+//   data[index] = element;
+// });
+month.forEach((element, index) => {
+  data[element] = index + 10;
+});
+console.log(data);

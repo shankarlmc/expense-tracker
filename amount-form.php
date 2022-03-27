@@ -56,7 +56,6 @@ echo '
             <option value="expense" selected>Expense</option>
             ';
         }
-        
         echo '
         </select>
         </div>
@@ -65,7 +64,7 @@ echo '
         <div class="form-group">
         <label for="amount_category">Category</label>
         <select class="form-control" name="amount_category" id="amount_category_form" required>
-            <option value="'.$category.'" selected disabled>'.$category.'</option>
+            <option value="'.$category.'" selected>'.ucwords($category).'</option>
             <option value="food">Food</option>
             <option value="entertainment">Entertainment</option>
             <option value="travel">Travel</option>
@@ -90,7 +89,6 @@ echo '
             placeholder="Enter Description" required value="'.$description.'" />
         </div>
     </div>
-    
     <div class="col-12">
         '.$btn.'
     </div>
