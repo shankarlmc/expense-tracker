@@ -4,6 +4,8 @@ $amount = '';
 $type = '';
 $category = '';
 $date = '';
+$max_date = date("Y-m-d");
+
 $description = '';
 $id = '';
 $btn = '<button type="submit" class="btn btn-primary" name="add_new_expense_item">Add Amount</button>';
@@ -79,7 +81,7 @@ echo '
         <div class="form-group">
         <label for="amount_date">Date</label>
         <input type="date" class="form-control" name="amount_date" id="amount_date_form"
-            placeholder="Enter Date" required value="'.$date.'" />
+            placeholder="Enter Date" required value="'.$date.'" max="'.$max_date.'"/>
         </div>
     </div>
     <div class="col-12">

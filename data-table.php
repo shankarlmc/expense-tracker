@@ -1,6 +1,15 @@
 <?php
 
-$data = fetchData($conn, 'amount');
+if (isset($_GET['date-from']) || isset($_GET['date-to'])) {
+    $date_from = clean($_GET['date-from']);
+    $date_to = clean($_GET['date-to']);
+    $table = "amount";
+    $where = "date BETWEEN '$date_from' AND '$date_to'";
+    $data = fetchData($conn, $table, $where);
+} else {
+    $table = "amount";
+    $data = fetchData($conn, $table);
+}
 $tr = '<tr>';
 $serial_no = 1;
 foreach($data as $item){

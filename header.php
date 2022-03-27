@@ -21,8 +21,3 @@ include './php/helpers.php';
     <link rel="stylesheet" href="css/app.css" />
   </head>
   <body>
-<!-- 
-  SELECT DISTINCT left (created_at, locate(' ', created_at) -1) as date from `sales` group by month(created_at) LIMIT 7
-SELECT DISTINCT left (date, locate(' ', date) -1) as date from `amount` 
-
-   -->

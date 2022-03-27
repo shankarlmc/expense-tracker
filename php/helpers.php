@@ -29,6 +29,7 @@ function fetchData($conn, $table, $where = NULL){
     }
 }
 
+
 function updateData($conn, $table, $data, $where) {
     $sql = "UPDATE $table SET ";
     $set = array();
@@ -82,14 +83,12 @@ function total_budget_calculater($conn, $type =  NULL){
 }
 
 // get sum amount of each month
-function get_amount_monthly($conn){
-    $month = date('m');
-    $year = date('Y');
-    $sql = "SELECT SUM(amount) as total_amount FROM amount WHERE MONTH(date) = '$month' AND YEAR(date) = '$year' ";
+function get_total_monthly_amt($conn, $month, $type = 'expense'){
+    $sql = "SELECT SUM(amount) as total_amount FROM amount WHERE type='$type' AND MONTH(date) = '$month' ";
     $result = mysqli_query($conn,$sql);
     if($result->num_rows > 0){
         $data = $result->fetch_all(MYSQLI_ASSOC);
-        return $data[0]['total_amount'];
+        return $data[0]['total_amount'] ? $data[0]['total_amount'] : 0;
     }
 }
 
