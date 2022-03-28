@@ -1,3 +1,5 @@
+-- CREATE DATABASE expense_tracker
+
 create table amount (
     id int primary key auto_increment,
     amount varchar(20) not null,
