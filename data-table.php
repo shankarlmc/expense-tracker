@@ -3,9 +3,19 @@
 if (isset($_GET['date-from']) || isset($_GET['date-to'])) {
     $date_from = clean($_GET['date-from']);
     $date_to = clean($_GET['date-to']);
+    $type = clean($_GET['type']) ? clean($_GET['type']) : '';
+    $category = clean($_GET['category']) ? clean($_GET['category']) : '';
+    $search = clean($_GET['search']) ? clean($_GET['search']) : '';
+    $table_data = array(
+        'date_from' => $date_from,
+        'date_to' => $date_to,
+        'type' => $type,
+        'category' => $category,
+        'search' => $search
+    );
     $table = "amount";
-    $where = "date BETWEEN '$date_from' AND '$date_to'";
-    $data = fetchData($conn, $table, $where);
+    $data = fetchData($conn, $table, $table_data, $where);
+
 } else {
     $table = "amount";
     $data = fetchData($conn, $table);
@@ -22,7 +32,7 @@ foreach($data as $item){
         <td>'.$item['category'].'</td>
         <td>'.$item['date'].'</td>
         <td>Nrs '.$item['amount'].'</td>
-        <td><button class="btn btn-light btn-outline-light"><a style="text-decoration:none;" href="/expense-tracker/index.php?expense='.$item["id"].'">Edit</a></button></td>
+        <td><button class="btn btn-light btn-outline-light"><a style="text-decoration:none;" href="/expense-tracker/index.php?edit-expense='.$item["id"].'">Edit</a></button></td>
         <td>
             <form method="POST" action="./php/submit-form.php">
             <input type="hidden" name="expense" value="'.$item["id"].'" />

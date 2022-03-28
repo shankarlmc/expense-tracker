@@ -60,7 +60,7 @@ echo '
             <div class="form-group">
             <label for="filter_type">Type</label>
             <select class="form-control" name="type" id="filter_type">
-                <option selected disabled></option>
+                <option selected disabled value="'.$type.'">'.ucwords($type).'</option>
                 <option value="income">Income</option>
                 <option value="expense">Expense</option>
             </select>
@@ -70,7 +70,7 @@ echo '
             <div class="form-group">
             <label for="filter_category">Category</label>
             <select class="form-control" name="category" id="filter_category">
-                <option selected disabled></option>
+                <option selected disabled value="'.$category.'">'.ucwords($category).'</option>
                 <option value="food">Food</option>
                 <option value="entertainment">Entertainment</option>
                 <option value="travel">Travel</option>

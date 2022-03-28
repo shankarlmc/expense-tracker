@@ -3,17 +3,19 @@
       document.getElementById("remove_filters_button").addEventListener("click", function(){
         window.location.href = "/expense-tracker/index.php";
       });
-
+      if (document.getElementById("cancel-update")){
+        document.getElementById("cancel-update").addEventListener("click", function(){
+          window.location.href = "/expense-tracker/index.php";
+        });
+      }
 
     </script>
 
 
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <!-- <script src="./js/script.js"></script> -->
+    <script src="./js/jquery-3.3.1.slim.min.js"></script>
+    <script src="./js/popper.min.js"></script>
+    <script src="./js/bootstrap.min.js"></script>
+    <script src="./js/chart.js"></script>
 
   </body>
 </html>

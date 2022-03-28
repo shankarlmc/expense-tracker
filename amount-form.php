@@ -9,13 +9,13 @@ $max_date = date("Y-m-d");
 $description = '';
 $id = '';
 $btn = '<button type="submit" class="btn btn-primary" name="add_new_expense_item">Add Amount</button>';
-
-if (isset($_GET['expense'])){
-    $expense_id = clean($_GET['expense']);
+if (isset($_GET['edit-expense'])){
+    
+    $expense_id = clean($_GET['edit-expense']);
     if ($expense_id != '') {
         $table = "amount";
         $where = "id = '$expense_id'";
-        $data = fetchData($conn, $table, $where);
+        $data = fetchData($conn, $table, NULL, $where);
         $data = $data[0];
         if ($data) {
             $id = $data['id'];
@@ -27,6 +27,7 @@ if (isset($_GET['expense'])){
             $btn = '
             <input type="hidden" name="expense_id" value="'.$expense_id.'" />
             <button type="submit" class="btn btn-success" name="update_expense_item">Save Changes</button>
+            <button id="cancel-update" type="button" class="btn btn-danger">Cancel</button>
             ';
         }
     }

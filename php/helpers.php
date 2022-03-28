@@ -15,13 +15,27 @@ function addData($conn, $table, $data) {
     }
 }
 
-function fetchData($conn, $table, $where = NULL){
-    if ($where){
-        $sql = "SELECT * FROM $table WHERE $where";
+function fetchData($conn, $table, $data = NULL, $where = NULL) {
+    $sql = "SELECT * FROM $table";
+    if ($where || $data) {
+        if ($data){
+            $sql .= " WHERE ";
+            $sql .= " date between '" . $data['date_from'] . "' AND '" . $data['date_to']."'";
+            $sql .= " AND (";
+            $sql .= " type = '" . $data['type']."'";
+            $sql .= " OR ";
+            $sql .= " category = '" . $data['category']."'";
+            $sql .= " OR ";
+            $sql .= " description LIKE '%" . $data['search'] . "%' )";  
+        } else {
+            $sql .= " WHERE " . $where;
+        }
+              
     } else {
         $sql = "SELECT * FROM $table";
     }
     $result = mysqli_query($conn, $sql);
+
     if ($result->num_rows > 0){
         return $result->fetch_all(MYSQLI_ASSOC);
     } else {
@@ -32,12 +46,12 @@ function fetchData($conn, $table, $where = NULL){
 
 function updateData($conn, $table, $data, $where) {
     $sql = "UPDATE $table SET ";
-    $set = array();
-    foreach ($data as $key => $value) {
-        $set[] = "$key = '$value'";
-    }
-    $sql .= implode(", ", $set);
-    $sql .= " WHERE $where";
+    $sql .= "amount = '" . $data['amount'] . "',";
+    $sql .= "type = '" . $data['type'] . "',";
+    $sql .= "category = '" . $data['category'] . "',";
+    $sql .= "date = '" . $data['date'] . "',";
+    $sql .= "description = '" . $data['description'] . "'";
+    $sql .= " WHERE " . $where;
     $result = mysqli_query($conn, $sql);
     if ($result) {
         return true;
@@ -71,7 +85,7 @@ function total_budget_calculater($conn, $type =  NULL){
         $result = mysqli_query($conn,$sql);
         if($result->num_rows > 0){
             $data = $result->fetch_all(MYSQLI_ASSOC);
-            return $data[0]['total_amount'];
+            return $data[0]['total_amount'] ? $data[0]['total_amount'] : 0;
         }
     }else{
         $data_income = total_budget_calculater($conn, 'income');
@@ -91,15 +105,3 @@ function get_total_monthly_amt($conn, $month, $type = 'expense'){
         return $data[0]['total_amount'] ? $data[0]['total_amount'] : 0;
     }
 }
-
-
-
-// create table amount (
-//     id int primary key auto_increment,
-//     amount varchar(20) not null,
-//     type varchar(100) not null,
-//     category varchar(100) not null, 
-//     date date not null,
-//     description varchar(255) 
-// );
-

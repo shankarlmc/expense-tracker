@@ -30,7 +30,7 @@
           
         </div>
         <h3 class="mt-3">Add Amount</h3>
-        <?php require './amount-form.php'; ?>
+        <?php include './amount-form.php'; ?>
 
         <h2 class="mt-4">Filters</h2>
         <?php require 'filter-form.php' ?>
