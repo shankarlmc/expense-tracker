@@ -12,30 +12,22 @@ isset($_GET['date-from']) || isset($_GET['date-to']) || isset($_GET['type']) || 
 
 
 if ($filter){
-    
     if (isset($_GET['date-from'])){
         $date_from = clean($_GET['date-from']);
     }
-
     if (isset($_GET['date-to'])){
         $date_to = clean($_GET['date-to']);
     }
-
     if (isset($_GET['type'])){
         $type = clean($_GET['type']);
     }
-
     if (isset($_GET['category'])){
         $category = clean($_GET['category']);
     }
-
     if (isset($_GET['search'])){
         $search = clean($_GET['search']);
     }
-
     $table = "amount";
-
-    
 }
 
 echo '
@@ -94,4 +86,3 @@ echo '
         </div>
     </form>
 ';
-?>

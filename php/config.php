@@ -1,7 +1,7 @@
 <?php
 
 $host = "localhost";
-$user = "shankar";
+$user = "root";
 $pass = "shankar";
 $db = "expense_tracker";
 
